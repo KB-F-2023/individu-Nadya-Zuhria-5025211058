@@ -1,0 +1,72 @@
+import random
+
+# Inisialisasi Data
+distance_matrix = [[0, 10, 15, 20],
+                   [10, 0, 35, 25],
+                   [15, 35, 0, 30],
+                   [20, 25, 30, 0]]
+population_size = 20
+mutation_rate = 0.2
+elite_size = 2
+generations = 100
+
+# Fungsi Fitness
+def fitness(individual, distance_matrix):
+    total_distance = 0
+    for i in range(len(individual)-1):
+        total_distance += distance_matrix[individual[i]][individual[i+1]]
+    total_distance += distance_matrix[individual[-1]][individual[0]]
+    return total_distance
+
+# Fungsi Seleksi
+def selection(population, elite_size):
+    fitness_scores = [(fitness(individual, distance_matrix), individual) for individual in population]
+    fitness_scores.sort()
+    elite = [individual for _, individual in fitness_scores[:elite_size]]
+    selected = random.sample(population, len(population)-elite_size)
+    return elite + selected
+
+# Fungsi Crossover
+def crossover(parent1, parent2):
+    child = [-1] * len(parent1)
+    start = random.randint(0, len(parent1)-1)
+    end = random.randint(start, len(parent1)-1)
+    for i in range(start, end+1):
+        child[i] = parent1[i]
+    remaining = [gene for gene in parent2 if gene not in child]
+    for i in range(len(child)):
+        if child[i] == -1:
+            child[i] = remaining.pop(0)
+    return child
+
+# Fungsi Mutasi
+def mutation(individual, mutation_rate):
+    for i in range(len(individual)):
+        if random.random() < mutation_rate:
+            j = random.randint(0, len(individual)-1)
+            individual[i], individual[j] = individual[j], individual[i]
+    return individual
+
+# Fungsi Algoritma Genetika
+def genetic_algorithm(distance_matrix, population_size, elite_size, mutation_rate, generations):
+    population = [[i for i in range(len(distance_matrix))] for _ in range(population_size)]
+    for generation in range(generations):
+        population = selection(population, elite_size)
+        children = []
+        while len(children) < population_size - elite_size:
+            parent1, parent2 = random.sample(population, 2)
+            child = crossover(parent1, parent2)
+            child = mutation(child, mutation_rate)
+            children.append(child)
+        population = population[:elite_size] + children
+    fitness_scores = [(fitness(individual, distance_matrix), individual) for individual in population]
+    fitness_scores.sort()
+    return fitness_scores[0][0], fitness_scores[0][1]
+
+# Jalankan Algoritma Genetika
+best_distance, best_route = genetic_algorithm(distance_matrix, population_size, 
+elite_size, mutation_rate, generations)
+
+# Cetak Solusi
+print("Best Distance:", best_distance)
+print("Best Route:", best_route)
