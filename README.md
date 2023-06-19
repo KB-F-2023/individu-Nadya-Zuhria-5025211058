@@ -83,7 +83,7 @@ print("Jalur terpendek dari", start, "ke", goal, "adalah:", path)
 ```
 print("Dengan total biaya:", cost)
 ```
-![Ouput_Tugas1_FindingShortestPath](URL_gambar)
+![Ouput_Tugas1_FindingShortestPath](https://github.com/KB-F-2023/individu-Nadya-Zuhria-5025211058/blob/b40547d561893454e63d90e308860e7923774f58/Output/Ouput_Tugas1_FindingShortestPath.png)
 
 ### Tugas 2. TSP with Genetic Algorithm
 - `import random`: Pernyataan ini mengimpor modul `random` yang digunakan untuk menghasilkan angka acak dalam algoritma genetika.
@@ -160,7 +160,7 @@ def genetic_algorithm(distance_matrix, population_size, elite_size, mutation_rat
 
 - Fungsi `print("Best Route:", best_route)`: Pernyataan ini mencetak rute terbaik yang ditemukan ke output menggunakan `print()`. Variabel `best_route` adalah argumen yang digunakan untuk membangun string yang dicetak.
 
-![Ouput_Tugas2_TSPwithGA](URL_gambar)
+![Ouput_Tugas2_TSPwithGA](https://github.com/KB-F-2023/individu-Nadya-Zuhria-5025211058/blob/b40547d561893454e63d90e308860e7923774f58/Output/Ouput_Tugas2_TSPwithGA.png)
 
 ### Tugas 3. MAP Coloring CSP
 -  `import copy`: Mengimpor modul `copy` yang digunakan untuk membuat salinan objek.
@@ -223,4 +223,4 @@ def check_solution(solution):
 ```
 - `Main function` : Pada bagian utama program, fungsi `backtrack` dipanggil dengan `assignment` awal yang kosong (`{}`). Hasil dari fungsi tersebut disimpan dalam `solution`. Jika tidak ada solusi yang ditemukan (solusi adalah None), pesan "No solution found" dicetak. Jika ada solusi yang ditemukan, solusi dicetak.
 
-![Ouput_Tugas3_MapColoringTSP](URL_gambar)
+![Ouput_Tugas3_MapColoringTSP](https://github.com/KB-F-2023/individu-Nadya-Zuhria-5025211058/blob/b40547d561893454e63d90e308860e7923774f58/Output/Ouput_Tugas3_MapColoringTSP.png)
